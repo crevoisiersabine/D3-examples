@@ -9,3 +9,5 @@ I created two types of simple visualisation tools using D3 (index.html):
 The two tools can be accessed through a single page that uses jQuery to respond to user selection choices.
 
 This piece of work was done to experiment with D3 & jQuery as I learned the concepts through following both Scott Murray's Interactive Data Visualisation book and the O'Reilly Javascript and jQuery, the missing manual.
+
+{Note: for index.html to work in your browser, you must place it in a folder along with the latest download of D3 (which I have named d3.v3.js) and also the us-states.json file}
