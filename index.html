@@ -165,49 +165,49 @@
    		d3.select("svg")
    			.on("click",function(pClicked){
    				
-   				  svg.selectAll("rect")
+   		  svg.selectAll("rect")
            		  .data(dataset)
            		  .enter()
            		  .append("rect")
            		  .transition()
-				  .duration(1000)
-				  .ease("linear")
+			  .duration(1000)
+			  .ease("linear")
         		  .attr("x", function(d) {
         			return xScale(d[0]) - barwidth/2;
-   				  })
-   				  .attr("y", function(d) {
-        	        return yScale(d[2]) - paddingX;
-   				  })
-   				  .attr("height", function(d) {
-    			    return (h-yScale(d[2]));
+   			  })
+   			  .attr("y", function(d) {
+        	        	return yScale(d[2]) - paddingX;
+   			  })
+   			  .attr("height", function(d) {
+    			    	return (h-yScale(d[2]));
            		  })
            		  .attr("width", barwidth)
            		  .attr("fill", function(d) {
     				return "rgb(0, " + Math.round((d[1]-d[2])/d[1]*111) + ", " + Math.round((d[1]-d[2])/d[1]*500) + ")";
-				  })
+			  })
 				
-				 	svg.selectAll("p")
-   				    .data(dataset)
-   				    .enter()
-   				    .append("text")
-   				    .transition()
-				    .delay(1000)
-				    .ease("linear")
-   				    .text(function(d) {
-        		      return Math.round(d[2]/d[1]*100) + " %";
-   				    })
-   				    .attr("x", function(d) {
-        		      return xScale(d[0]);
-    			    })
-   				    .attr("y", function(d) {
-        		      return yScale(d[2]) - paddingX + 30;
-    			    })
-   				    .attr("font-family", "georgia")
-   				    .attr("font-size", "15px")
-   				    .attr("fill", "white")
-   				    .attr("text-anchor", "middle");
+		  svg.selectAll("p")
+   			  .data(dataset)
+   			  .enter()
+   			  .append("text")
+   			  .transition()
+			  .delay(1000)
+			  .ease("linear")
+   			  .text(function(d) {
+        		      	return Math.round(d[2]/d[1]*100) + " %";
+   			  })
+   			  .attr("x", function(d) {
+        		      	return xScale(d[0]);
+    			  })
+   			  .attr("y", function(d) {
+        		      	return yScale(d[2]) - paddingX + 30;
+    			  })
+   			  .attr("font-family", "georgia")
+   			  .attr("font-size", "15px")
+   			  .attr("fill", "white")
+   			  .attr("text-anchor", "middle");
 
-				});
+		});
 		    }
 		  
 		    else {
@@ -217,7 +217,7 @@
        		
        		$('div > h1').html('<h1>Map of the United States</h1>');
        	    
-       	    $('div > p').html('<p>Click anywhere on the chart to view holiday journey sized by time spent in each place!</p>');
+       	    	$('div > p').html('<p>Click anywhere on the chart to view holiday journey sized by time spent in each place!</p>');
        		
        		$('#picture').remove();
        			
@@ -227,13 +227,13 @@
 			var radius = 5;
 		
 			var projection = d3.geo.albersUsa()
-                       .translate([w/2, h/2])
-                       .scale([700]);
+                       		.translate([w/2, h/2])
+                       		.scale([700]);
                        
-        	var path = d3.geo.path()
-					.projection(projection);
+        		var path = d3.geo.path()
+				.projection(projection);
 			
-        	var svg = d3.select("body").append("svg")
+        		var svg = d3.select("body").append("svg")
             			.attr("width", w)
             			.attr("height", h)
             			.append("g")
@@ -243,38 +243,38 @@
         	d3.json("us-states.json", function(json) {
 
         		svg.selectAll("path")
-           		.data(json.features)
-           		.enter()
-           		.append("path")
-           		.attr("d", path);
+           			.data(json.features)
+           			.enter()
+           			.append("path")
+           			.attr("d", path);
 
 			});
             
-			d3.select("svg")
-   				.on("click",function(pClicked){
+		d3.select("svg")
+   			.on("click",function(pClicked){
 		
-					d3.csv("trip.csv", function(dataset) {
+			d3.csv("trip.csv", function(dataset) {
 
-						svg.selectAll("circle")
-						   .data(dataset)
-						   .enter()
-						   .append("circle")
-						   .attr("cx", function(d) {
-							   return projection([d.lon, d.lat])[0];
-						   })
-						   .attr("cy", function(d) {
-							   return projection([d.lon, d.lat])[1];
-						   })
-						   .attr("r", function(d) {
-                 			   return Math.sqrt(parseInt(d.hours)*2);
-           					})
-						   .style("fill", "yellow")
-						   .style("opacity", 0.85)
-						   .attr("stroke", "orange")
-						   .attr("stroke-width", 2);
+			svg.selectAll("circle")
+				.data(dataset)
+				.enter()
+				.append("circle")
+				.attr("cx", function(d) {
+					return projection([d.lon, d.lat])[0];
+				})
+				.attr("cy", function(d) {
+					return projection([d.lon, d.lat])[1];
+				})
+				.attr("r", function(d) {
+                 			 return Math.sqrt(parseInt(d.hours)*2);
+           			})
+				.style("fill", "yellow")
+				.style("opacity", 0.85)
+				.attr("stroke", "orange")
+				.attr("stroke-width", 2);
 
-				   });
 			});
+		});
 		  }
 		}
        	
